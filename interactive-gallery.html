@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Image Gallery</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .thumbnail {
+            cursor: pointer;
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        .thumbnail:hover {
+            border-color: #007BFF;
+        }
+
+        .main-image-container {
+            width: 500px;
+            height: 500px;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="gallery-container">
+        <div class="thumbnails">
+            <img src="20240222_173119.jpg" alt="Image 1" class="thumbnail" onclick="showImage('image1.jpg')">
+            <img src="20240222_184950.jpg" alt="Image 2" class="thumbnail" onclick="showImage('image2.jpg')">
+            <img src="IMG-20240223-WA0005.jpg" alt="Image 3" class="thumbnail" onclick="showImage('image3.jpg')">
+        </div>
+        <div class="main-image-container">
+            <img id="main-image" src="20240222_173119.jpg" alt="Main Image">
+        </div>
+    </div>
+
+</body>
+
+</html>

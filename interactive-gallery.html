@@ -45,6 +45,7 @@
         .main-image-container {
             width: 500px;
             height: 500px;
+            position: relative;
             overflow: hidden;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -55,21 +56,83 @@
             height: 100%;
             object-fit: cover;
         }
+
+        #caption {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+        }
+
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .nav-button.left {
+            left: 10px;
+        }
+
+        .nav-button.right {
+            right: 10px;
+        }
     </style>
 </head>
 
 <body>
     <div class="gallery-container">
         <div class="thumbnails">
-            <img src="20240222_173119.jpg" alt="Image 1" class="thumbnail" onclick="showImage('image1.jpg')">
-            <img src="20240222_184950.jpg" alt="Image 2" class="thumbnail" onclick="showImage('image2.jpg')">
-            <img src="IMG-20240223-WA0005.jpg" alt="Image 3" class="thumbnail" onclick="showImage('image3.jpg')">
+            <img src="20240222_173119.jpg" alt="Image 1" class="thumbnail" onclick="showImage('20240222_173119.jpg')">
+            <img src="20240222_184950.jpg" alt="Image 2" class="thumbnail" onclick="showImage('20240222_184950.jpg')">
+            <img src="IMG-20240223-WA0005.jpg" alt="Image 3" class="thumbnail" onclick="showImage('IMG-20240223-WA0005.jpg')">
         </div>
         <div class="main-image-container">
+            <button class="nav-button left" onclick="prevImage()">&#10094;</button>
             <img id="main-image" src="20240222_173119.jpg" alt="Main Image">
+            <button class="nav-button right" onclick="nextImage()">&#10095;</button>
         </div>
+        <div id="caption">Caption for Image 1</div>
     </div>
 
+    <script>
+        const images = [
+            '20240222_173119.jpg',
+            '20240222_184950.jpg',
+            'IMG-20240223-WA0005.jpg'
+        ];
+
+        const captions = {
+            '20240222_173119.jpg': 'Cake',
+            '20240222_184950.jpg': 'Scenaric view',
+            'IMG-20240223-WA0005.jpg': 'Cruise',
+        };
+
+        let currentIndex = 0;
+
+        function showImage(imageSrc) {
+            const mainImage = document.getElementById('main-image');
+            const caption = document.getElementById('caption');
+            mainImage.src = imageSrc;
+            caption.textContent = captions[imageSrc];
+            currentIndex = images.indexOf(imageSrc);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            showImage(images[currentIndex]);
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            showImage(images[currentIndex]);
+        }
+    </script>
 </body>
 
 </html>
